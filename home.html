@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <div class="wave one"></div>
+        <div class="wave two"></div>
+        <div class="wave three"></div>
+
+    </div>
+
+    <div id="weathercon">
+        <i class="fas fa-sun" style="color:yellow"></i>
+    </div>
+    
+    <div class="info">
+        <h2 class="location">  <i class="fas fa-sun"></i>{%location%} {%country%}</h2>
+        <p id="date">WED | OCT 23 |10:49AM</p>
+        <h1 class="temp">{%tempval%}</h1>
+        <h3 class="tempmin_max"> {%tempmin%} | {%tempmax%}</h3>
+    </div>
+
+    <script>
+        const curDate=document.getElementById('date');
+        let weathercon=document.getElementById('weathercon');
+
+        const tempStatus="Clouds";
+        const getCurrentDay=()=>{
+            var weekday=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+            var months=["january","february","march","april","may","june","july","august","september","october","november","december"]
+            let current=new Date();
+            var day=weekday[current.getDay()];
+            var month=months[current.getMonth()];
+            var date=current.getDate();
+            var year=current.getFullYear();
+            var hours=current.getHours();
+            var minutes=current.getMinutes();
+            var cond="AM";
+            // hours=24;
+            // console.log(weekday[current.getDay()]); 
+            // console.log(current.getMonth());
+            // console.log(months[current.getMonth()]);
+            // console.log(current.getDate());
+            // console.log(current.getFullYear());
+            // console.log(current.getHours());
+            // console.log(current.getMinutes());
+            if (hours>=12){
+                cond="PM";
+            }
+            hours=hours%12;
+            if (hours==0 && cond=="PM"){
+                hours=12;
+            }
+            console.log(day,month,date,year,hours,minutes);
+            curDate.innerHTML=`${day} | ${month} | ${hours}:${minutes} ${cond}`;
+        }
+        getCurrentDay();
+    </script>
+</body>
+</html>
